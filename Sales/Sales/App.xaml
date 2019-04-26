@@ -1,8 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infra="clr-namespace:Sales.Infrastructure"
              x:Class="Sales.App">
     <Application.Resources>
+
+        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+
+            <!-- Locator -->
+            <infra:InstanceLocator x:Key="Locator"/>
+
+            <!-- Parameters -->
+            <x:String x:Key="UrlAPI">http://www.negrisl.es</x:String>
+            <x:String x:Key="UrlPrefix">/Sales.api/api</x:String>
+            <x:String x:Key="UrlProductsController">/Products</x:String>
+
+            <!-- General colors -->
+            <Color x:Key="MainColor">#428BCA</Color>
+            <Color x:Key="FontColor">#212529</Color>
+            <Color x:Key="AccentColor1">#cdff00</Color>
+            <Color x:Key="AccentColor2">#b8b89f</Color>
+            <Color x:Key="BackGroundColor">#f9f9f9</Color>
+
+            <!-- Menu color -->
+            <Color x:Key="MenuColor">#52656b</Color>
+            <Color x:Key="MenuFontColor">#ffffff</Color>
+
+            <!-- Bootstrap-->
+            <Color x:Key="BackGroundDefault">#ffffff</Color>
+            <Color x:Key="BackGroundPrimary">#007bff</Color>
+            <Color x:Key="BackGroundSuccess">#28a745</Color>
+            <Color x:Key="BackGroundInfo">#17a2b8</Color>
+            <Color x:Key="BackGroundWarning">#ffc107</Color>
+            <Color x:Key="BackGroundDanger">#dc3545</Color>
+
+            <Color x:Key="FontDefault">#ffffff</Color>
+            <Color x:Key="FontPrimary">#ffffff</Color>
+            <Color x:Key="FontSuccess">#ffffff</Color>
+            <Color x:Key="FontInfo">#ffffff</Color>
+            <Color x:Key="FontWarning">#212529</Color>
+            <Color x:Key="FontDanger">#ffffff</Color>
+
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>
