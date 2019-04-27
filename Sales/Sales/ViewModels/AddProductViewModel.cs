@@ -15,7 +15,7 @@
         #region Attributes
         private MediaFile file;
         private ImageSource imageSource;
-        private ApiServices apiService;
+        private ApiService apiService;
         private bool isRunning;
         private bool isEnabled;
         #endregion
@@ -45,7 +45,7 @@
         #region Constructors
         public AddProductViewModel()
         {
-            this.apiService = new ApiServices();
+            this.apiService = new ApiService();
             this.IsEnabled = true;
             this.ImageSource = "noimage";
         }
@@ -171,7 +171,7 @@
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
-            var response = await this.apiService.Post<Product>(url, prefix, controller, product);
+            var response = await this.apiService.Post<Product>(url, prefix, controller, product, Settings.TokenType, Settings.AccessToken);
 
             if (!response.IsSuccess)
             {
@@ -188,7 +188,7 @@
 
             this.IsRunning = false;
             this.IsEnabled = true;
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
 
         }
         #endregion

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Sales.Helpers"
+             x:Class="Sales.Views.RegisterPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="{i18n:Translate Products}">
+    <ContentPage.Content>
+        <ScrollView  
+            BindingContext="{Binding Register}">
+            <StackLayout
+                Padding="5">
+                <Image 
+                    Aspect="AspectFill"
+                    HeightRequest="250"
+                    Source="{Binding ImageSource}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label 
+                    HorizontalOptions="Center" 
+                    FontSize="Small" 
+                    Text="{i18n:Translate ChangeImage}">
+                </Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Grid.Column="0" 
+                        Grid.Row="0" 
+                        Text="{i18n:Translate FirstName}" 
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry 
+                        Grid.Column="1" 
+                        Grid.Row="0" 
+                        Placeholder="{i18n:Translate FirstNamePH}" 
+                        Text="{Binding FirstName, Mode=TwoWay}">
+                    </Entry>
+                    <Label 
+                        Grid.Column="0" 
+                        Grid.Row="1" 
+                        Text="{i18n:Translate LastName}" 
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry 
+                        Grid.Column="1" 
+                        Grid.Row="1" 
+                        Placeholder="{i18n:Translate LastNamePH}" 
+                        Text="{Binding LastName, Mode=TwoWay}">
+                    </Entry>
+                    <Label 
+                        Grid.Column="0" 
+                        Grid.Row="2" 
+                        Text="{i18n:Translate Email}" 
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry 
+                        Keyboard="Email" 
+                        Grid.Column="1" 
+                        Grid.Row="2" 
+                        Placeholder="{i18n:Translate EmailPH}" 
+                        Text="{Binding Email, Mode=TwoWay}">
+                    </Entry>
+                    <Label 
+                        Grid.Column="0" 
+                        Grid.Row="3" 
+                        Text="{i18n:Translate Phone}" 
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry 
+                        Grid.Column="1" 
+                        Grid.Row="3" 
+                        Keyboard="Telephone" 
+                        Placeholder="{i18n:Translate PhonePH}" 
+                        TextColor="Black" 
+                        Text="{Binding Phone, Mode=TwoWay}">
+                    </Entry>
+                    <Label 
+                        Grid.Column="0" 
+                        Grid.Row="4" 
+                        Text="{i18n:Translate Address}" 
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry 
+                        Grid.Column="1" 
+                        Grid.Row="4" 
+                        Placeholder="{i18n:Translate AddressPH}" 
+                        Text="{Binding Address, Mode=TwoWay}">
+                    </Entry>
+                    <Label 
+                        Grid.Column="0" 
+                        Grid.Row="5" 
+                        Text="{i18n:Translate Password}" 
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry 
+                        Grid.Column="1" 
+                        Grid.Row="5" 
+                        IsPassword="true" 
+                        Placeholder="{i18n:Translate PasswordPH}" 
+                        Text="{Binding Password, Mode=TwoWay}">
+                    </Entry>
+                    <Label 
+                        Grid.Column="0" 
+                        Grid.Row="6" 
+                        Text="{i18n:Translate PasswordConfirm}" 
+                        TextColor="Black" 
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry 
+                        Grid.Column="1" 
+                        Grid.Row="6" 
+                        IsPassword="true" 
+                        Placeholder="{i18n:Translate PasswordConfirm}" 
+                        TextColor="Black" 
+                        Text="{Binding PasswordConfirm, Mode=TwoWay}">
+                    </Entry>
+                </Grid>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand">
+                </ActivityIndicator>
+                <Button 
+                    BackgroundColor="Navy" 
+                    BorderRadius="23" 
+                    Command="{Binding SaveCommand}" 
+                    HeightRequest="46" 
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}" 
+                    Text="{i18n:Translate Save}" 
+                    TextColor="White">
+                </Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

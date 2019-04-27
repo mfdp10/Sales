@@ -15,6 +15,7 @@
             <x:String x:Key="UrlAPI">http://www.negrisl.es</x:String>
             <x:String x:Key="UrlPrefix">/Sales.api/api</x:String>
             <x:String x:Key="UrlProductsController">/Products</x:String>
+            <x:String x:Key="UrlUsersController">/Users</x:String>
 
             <!-- General colors -->
             <Color x:Key="MainColor">#428BCA</Color>

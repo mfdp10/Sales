@@ -21,7 +21,7 @@
 
         public TranslateExtension()
         {
-            //ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+            ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
         }
 
         public string Text { get; set; }

@@ -88,6 +88,24 @@ namespace Sales.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Address.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter your address....
+        /// </summary>
+        public static string AddressPH {
+            get {
+                return ResourceManager.GetString("AddressPH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string Cancel {
@@ -205,11 +223,20 @@ namespace Sales.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a valid email.
+        /// </summary>
+        public static string EmailError {
+            get {
+                return ResourceManager.GetString("EmailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Enter your email....
         /// </summary>
-        public static string EmailPlaceHolder {
+        public static string EmailPH {
             get {
-                return ResourceManager.GetString("EmailPlaceHolder", resourceCulture);
+                return ResourceManager.GetString("EmailPH", resourceCulture);
             }
         }
         
@@ -237,6 +264,33 @@ namespace Sales.Resources {
         public static string Exit {
             get {
                 return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a First Name.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a first name.
+        /// </summary>
+        public static string FirstNameError {
+            get {
+                return ResourceManager.GetString("FirstNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter your first name....
+        /// </summary>
+        public static string FirstNamePH {
+            get {
+                return ResourceManager.GetString("FirstNamePH", resourceCulture);
             }
         }
         
@@ -277,6 +331,33 @@ namespace Sales.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Last Name.
+        /// </summary>
+        public static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a last name.
+        /// </summary>
+        public static string LastNameError {
+            get {
+                return ResourceManager.GetString("LastNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter your last name....
+        /// </summary>
+        public static string LastNamePH {
+            get {
+                return ResourceManager.GetString("LastNamePH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Login.
         /// </summary>
         public static string Login {
@@ -313,6 +394,15 @@ namespace Sales.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No products information available.
+        /// </summary>
+        public static string NoProductsMessage {
+            get {
+                return ResourceManager.GetString("NoProductsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Password.
         /// </summary>
         public static string Password {
@@ -322,11 +412,56 @@ namespace Sales.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirm.
+        /// </summary>
+        public static string PasswordConfirm {
+            get {
+                return ResourceManager.GetString("PasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a password confirm.
+        /// </summary>
+        public static string PasswordConfirmError {
+            get {
+                return ResourceManager.GetString("PasswordConfirmError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter your password confirm....
+        /// </summary>
+        public static string PasswordConfirmPH {
+            get {
+                return ResourceManager.GetString("PasswordConfirmPH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a password. At least 6 characters.
+        /// </summary>
+        public static string PasswordError {
+            get {
+                return ResourceManager.GetString("PasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The password and confirm must be equals.
+        /// </summary>
+        public static string PasswordNoMatch {
+            get {
+                return ResourceManager.GetString("PasswordNoMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Enter your password....
         /// </summary>
-        public static string PasswordPlaceHolder {
+        public static string PasswordPH {
             get {
-                return ResourceManager.GetString("PasswordPlaceHolder", resourceCulture);
+                return ResourceManager.GetString("PasswordPH", resourceCulture);
             }
         }
         
@@ -336,6 +471,33 @@ namespace Sales.Resources {
         public static string PasswordValidation {
             get {
                 return ResourceManager.GetString("PasswordValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Phone.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a phone number.
+        /// </summary>
+        public static string PhoneError {
+            get {
+                return ResourceManager.GetString("PhoneError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter your phone number....
+        /// </summary>
+        public static string PhonePH {
+            get {
+                return ResourceManager.GetString("PhonePH", resourceCulture);
             }
         }
         
@@ -381,6 +543,15 @@ namespace Sales.Resources {
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The user was created successfully. Now you can enter with the email and the assigned password .
+        /// </summary>
+        public static string RegisterConfirmation {
+            get {
+                return ResourceManager.GetString("RegisterConfirmation", resourceCulture);
             }
         }
         
