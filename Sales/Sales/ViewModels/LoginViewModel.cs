@@ -66,25 +66,13 @@
 
             //this.Email = "sat-mauricio@negrisl.es";
             //this.Password = "829501";
-            this.Email = "mfdp10@hotmail.com";
-            this.Password = "666666";
+            //this.Email = "gise077@hotmail.com";
+            //this.Password = "mamochi";
 
         }
         #endregion
 
         #region Commands
-        public ICommand LoginFacebookComand
-        {
-            get
-            {
-                return new RelayCommand(LoginFacebook);
-            }
-        }
-
-        private async void LoginFacebook()
-        {
-            //await Application.Current.MainPage.Navigation.PushAsync(new LoginFacebookPage());
-        }
 
         public ICommand LoginCommand
         {
@@ -183,6 +171,82 @@
             MainViewModel.GetInstance().Register = new RegisterViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
+
+        public ICommand LoginFacebookComand
+        {
+            get
+            {
+                return new RelayCommand(LoginFacebook);
+            }
+        }
+
+        private async void LoginFacebook()
+        {
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    connection.Message,
+                    Languages.Accept);
+                return;
+            }
+
+            await Application.Current.MainPage.Navigation.PushAsync(new LoginFacebookPage());
+        }
+
+        public ICommand LoginInstagramComand
+        {
+            get
+            {
+                return new RelayCommand(LoginInstagram);
+            }
+        }
+
+        private async void LoginInstagram()
+        {
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    connection.Message,
+                    Languages.Accept);
+                return;
+            }
+
+            await Application.Current.MainPage.Navigation.PushAsync(new LoginInstagramPage());
+        }
+
+        public ICommand LoginTwitterComand
+        {
+            get
+            {
+                return new RelayCommand(LoginTwitter);
+            }
+        }
+
+        private async void LoginTwitter()
+        {
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    connection.Message,
+                    Languages.Accept);
+                return;
+            }
+
+            await Application.Current.MainPage.Navigation.PushAsync(new LoginTwitterPage());
+        }
+
         #endregion
     }
 }
