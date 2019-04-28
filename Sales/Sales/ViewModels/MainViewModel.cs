@@ -34,17 +34,29 @@
         {
             get
             {
-                //si escribio direccion hay 4 claims
-                if (this.UserASP != null && this.UserASP.Claims != null && this.UserASP.Claims.Count > 3)
+                foreach (var claim in this.UserASP.Claims)
                 {
-                    return $"http://www.negrisl.es/sales.api{this.UserASP.Claims[3].ClaimValue.Substring(1)}";
-                }
+                    if (claim.ClaimType == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/uri")
+                    {
+                        if (claim.ClaimValue.StartsWith("~"))
+                        {
+                            return $"http://www.negrisl.es/sales.api{claim.ClaimValue.Substring(1)}";
+                        }
 
-                //si no escribio direccion hay 3 claims
-                if (this.UserASP != null && this.UserASP.Claims != null && this.UserASP.Claims.Count > 2)
-                {
-                    return $"http://www.negrisl.es/sales.api{this.UserASP.Claims[2].ClaimValue.Substring(1)}";
+                        return claim.ClaimValue;
+                    }
                 }
+                ////si escribio direccion hay 4 claims
+                //if (this.UserASP != null && this.UserASP.Claims != null && this.UserASP.Claims.Count > 3)
+                //{
+                //    return $"http://www.negrisl.es/sales.api{this.UserASP.Claims[3].ClaimValue.Substring(1)}";
+                //}
+
+                ////si no escribio direccion hay 3 claims
+                //if (this.UserASP != null && this.UserASP.Claims != null && this.UserASP.Claims.Count > 2)
+                //{
+                //    return $"http://www.negrisl.es/sales.api{this.UserASP.Claims[2].ClaimValue.Substring(1)}";
+                //}
                 return null;
             }
         }

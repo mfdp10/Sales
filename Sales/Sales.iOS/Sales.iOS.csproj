@@ -91,6 +91,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Implementations\Localize.cs" />
+    <Compile Include="Implementations\LoginFacebookPageRenderer.cs" />
     <Compile Include="Implementations\PathService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -206,10 +207,17 @@
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Auth">
+      <Version>1.6.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\..\Sales.Common\Sales.Common.csproj">
+      <Project>{0e074ed6-3029-456e-84ec-3c39777d4cbe}</Project>
+      <Name>Sales.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sales\Sales.csproj">
       <Project>{895FA52D-CDEE-4DBE-B612-23D88E860582}</Project>
       <Name>Sales</Name>
