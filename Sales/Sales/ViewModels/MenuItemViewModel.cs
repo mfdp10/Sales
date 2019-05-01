@@ -25,10 +25,8 @@
             }
         }
 
-        private void Goto()
+        private async void Goto()
         {
-            //App.Master.IsPresented = false;
-
             if (this.PageName == "LoginPage")
             {
                 Settings.AccessToken = string.Empty;
@@ -39,11 +37,11 @@
                 Application.Current.MainPage = new NavigationPage(
                     new LoginPage());
             }
-            //else if (this.PageName == "MyProfilePage")
-            //{
-            //    MainViewModel.GetInstance().MyProfile = new MyProfileViewModel();
-            //    App.Navigator.PushAsync(new MyProfilePage());
-            //}
+            else if (this.PageName == "AboutPage")
+            {
+                App.Master.IsPresented = false;
+                await App.Navigator.PushAsync(new MapPage());
+            }
         }
         #endregion
     }

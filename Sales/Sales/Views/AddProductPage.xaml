@@ -38,6 +38,15 @@
                     Placeholder="{i18n:Translate PricePH}">
                 </Entry>
                 <Label
+                    Text="{i18n:Translate Category}">
+                </Label>
+                <Picker
+                    ItemDisplayBinding="{Binding Description}"
+                    ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding Category}"
+                    Title="{i18n:Translate CategoryPH}">
+                </Picker>
+                <Label
                     Text="{i18n:Translate Remarks}">
                 </Label>
                 <Editor

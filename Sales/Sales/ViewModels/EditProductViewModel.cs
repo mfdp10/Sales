@@ -10,6 +10,9 @@
     using Xamarin.Forms;
     using System.Linq;
     using System;
+    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class EditProductViewModel : BaseViewModel
     {
@@ -20,9 +23,22 @@
         private ApiService apiService;
         private bool isRunning;
         private bool isEnabled;
+        private ObservableCollection<Category> categories;
+        private Category category;
         #endregion
 
         #region Properties
+        public List<Category> MyCategories { get; set; }
+        public Category Category
+        {
+            get { return this.category; }
+            set { this.SetValue(ref this.category, value); }
+        }
+        public ObservableCollection<Category> Categories
+        {
+            get { return this.categories; }
+            set { this.SetValue(ref this.categories, value); }
+        }
         public Product Product
         {
             get { return this.product; }
@@ -53,6 +69,7 @@
             this.apiService = new ApiService();
             this.IsEnabled = true;
             this.ImageSource = product.ImageFullPath;
+            this.LoadCategories();
         }
         #endregion
 
@@ -63,55 +80,6 @@
             {
                 return new RelayCommand(Delete);
             }
-        }
-
-        private async void Delete()
-        {
-            var answer = await Application.Current.MainPage.DisplayAlert(Languages.Confirm, Languages.DeleteConfirmation, Languages.Yes, Languages.No);
-
-            if (!answer)
-            {
-                return;
-            }
-
-            this.IsRunning = true;
-            this.IsEnabled = false;
-
-            var connection = await this.apiService.CheckConnection();
-            if (!connection.IsSuccess)
-            {
-                this.IsRunning = false;
-                this.IsEnabled = true;
-                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
-                return;
-            }
-
-            var url = Application.Current.Resources["UrlAPI"].ToString();
-            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-            var controller = Application.Current.Resources["UrlProductsController"].ToString();
-            var response = await this.apiService.Delete(url, prefix, controller, this.Product.ProductId, Settings.TokenType, Settings.AccessToken);
-
-            if (!response.IsSuccess)
-            {
-                this.IsRunning = false;
-                this.IsEnabled = true;
-                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
-                return;
-            }
-
-            var productsViewModel = ProductsViewModel.GetInstance();
-            var deletedProduct = productsViewModel.MyProducts.Where(p => p.ProductId == this.Product.ProductId).FirstOrDefault();
-            if (deletedProduct != null)
-            {
-                productsViewModel.MyProducts.Remove(deletedProduct);
-            }
-
-            productsViewModel.RefreshList();
-
-            this.IsRunning = false;
-            this.IsEnabled = true;
-
-            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         public ICommand ChangeImageCommand
@@ -132,6 +100,52 @@
         #endregion
 
         #region Methods
+        private async void LoadCategories()
+        {
+            this.IsRunning = true;
+            this.IsEnabled = false;
+
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
+                return;
+            }
+
+            var answer = await this.LoadCategoriesFromAPI();
+            if (answer)
+            {
+                this.RefreshList();
+            }
+
+            this.Category = this.MyCategories.FirstOrDefault(c => c.CategoryId == this.Product.CategoryId);
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+        }
+
+        private void RefreshList()
+        {
+            this.Categories = new ObservableCollection<Category>(this.MyCategories.OrderBy(c => c.Description));
+        }
+
+        private async Task<bool> LoadCategoriesFromAPI()
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlCategoriesController"].ToString();
+            var response = await this.apiService.GetList<Category>(url, prefix, controller, Settings.TokenType, Settings.AccessToken);
+            if (!response.IsSuccess)
+            {
+                return false;
+            }
+
+            this.MyCategories = (List<Category>)response.Result;
+            return true;
+        }
+
         private async void ChangeImage()
         {
             await CrossMedia.Current.Initialize();
@@ -187,20 +201,20 @@
                 return;
             }
 
-            //if (string.IsNullOrEmpty(this.Product.Price))
-            //{
-            //    await Application.Current.MainPage.DisplayAlert(
-            //        Languages.Error,
-            //        Languages.PriceError,
-            //        Languages.Accept);
-            //    return;
-            //}
-            //var price = decimal.Parse(this.Product.Price);
             if (this.Product.Price < 0)
             {
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
                     Languages.PriceError,
+                    Languages.Accept);
+                return;
+            }
+
+            if (this.Category == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.CategoryError,
                     Languages.Accept);
                 return;
             }
@@ -224,6 +238,8 @@
                 this.Product.ImageArray = imageArray;
             }
 
+            this.Product.CategoryId = this.Category.CategoryId;
+            
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
@@ -255,6 +271,56 @@
             await App.Navigator.PopAsync();
 
         }
+
+        private async void Delete()
+        {
+            var answer = await Application.Current.MainPage.DisplayAlert(Languages.Confirm, Languages.DeleteConfirmation, Languages.Yes, Languages.No);
+
+            if (!answer)
+            {
+                return;
+            }
+
+            this.IsRunning = true;
+            this.IsEnabled = false;
+
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
+                return;
+            }
+
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlProductsController"].ToString();
+            var response = await this.apiService.Delete(url, prefix, controller, this.Product.ProductId, Settings.TokenType, Settings.AccessToken);
+
+            if (!response.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+                return;
+            }
+
+            var productsViewModel = ProductsViewModel.GetInstance();
+            var deletedProduct = productsViewModel.MyProducts.Where(p => p.ProductId == this.Product.ProductId).FirstOrDefault();
+            if (deletedProduct != null)
+            {
+                productsViewModel.MyProducts.Remove(deletedProduct);
+            }
+
+            productsViewModel.RefreshList();
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
+
         #endregion
 
     }

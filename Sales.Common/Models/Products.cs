@@ -33,6 +33,10 @@ namespace Sales.Common.Models
         [DataType(DataType.Date)]
         public DateTime PublishOn { get; set; }
 
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
         [Required]
         [StringLength(128)]
         public string UserId { get; set; }

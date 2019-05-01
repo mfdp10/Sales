@@ -313,7 +313,7 @@
     <value>Categoría</value>
   </data>
   <data name="CategoryPH" xml:space="preserve">
-    <value>Categoría:</value>
+    <value>Seleccione una categoría</value>
   </data>
   <data name="CategoryError" xml:space="preserve">
     <value>¡Debe seleccionar una categoría!</value>
