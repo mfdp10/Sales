@@ -87,5 +87,28 @@
             var answer = UsersHelper.CreateUserASP(userRequest);
             return Ok(answer);
         }
+
+        [HttpPost]
+        [Route("LoginTwitter")]
+        public IHttpActionResult LoginTwitter(TwitterResponse profile)
+        {
+            var user = UsersHelper.GetUserASP(profile.IdStr);
+            if (user != null)
+            {
+                return Ok(true);
+            }
+
+            var userRequest = new UserRequest
+            {
+                Email = profile.IdStr,
+                FirstName = profile.Name,
+                ImagePath = profile.ProfileImageUrl,
+                LastName = profile.Name,
+                Password = profile.IdStr,
+            };
+
+            var answer = UsersHelper.CreateUserASP(userRequest);
+            return Ok(answer);
+        }
     }
 }

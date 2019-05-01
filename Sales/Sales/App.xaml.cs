@@ -30,7 +30,7 @@ namespace Sales
                     mainViewModel.UserASP = JsonConvert.DeserializeObject<MyUserASP>(Settings.UserASP);
                 }
 
-                mainViewModel.Products = new ProductsViewModel();
+                mainViewModel.Categories = new CategoriesViewModel();
                 this.MainPage = new MasterPage();
             }
             else
@@ -39,7 +39,6 @@ namespace Sales
                 this.MainPage = new NavigationPage(new LoginPage());
             }
         }
-
 
         public static Action HideLoginView
         {
@@ -75,7 +74,37 @@ namespace Sales
             }
 
 //            MainViewModel.GetInstance().Categories = new CategoriesViewModel();
-            MainViewModel.GetInstance().Products = new ProductsViewModel();
+            MainViewModel.GetInstance().Categories = new CategoriesViewModel();
+            Application.Current.MainPage = new MasterPage();
+        }
+
+        public static async Task NavigateToProfile(TwitterResponse profile, TokenResponse token)
+        {
+            if (profile == null)
+            {
+                Application.Current.MainPage = new NavigationPage(new LoginPage());
+                return;
+            }
+
+            Settings.IsRemembered = true;
+            Settings.AccessToken = token.AccessToken;
+            Settings.TokenType = token.TokenType;
+
+            var apiService = new ApiService();
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlUsersController"].ToString();
+            var response = await apiService.GetUser(url, prefix, $"{controller}/GetUser", token.UserName, token.TokenType, token.AccessToken);
+            if (response.IsSuccess)
+            {
+                var userASP = (MyUserASP)response.Result;
+                MainViewModel.GetInstance().UserASP = userASP;
+                //MainViewModel.GetInstance().RegisterDevice();
+                Settings.UserASP = JsonConvert.SerializeObject(userASP);
+            }
+
+            MainViewModel.GetInstance().Categories = new CategoriesViewModel();
+            //MainViewModel.GetInstance().Products = new ProductsViewModel();
             Application.Current.MainPage = new MasterPage();
         }
 

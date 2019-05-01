@@ -16,6 +16,7 @@
         public LoginViewModel Login { get; set; }
         public EditProductViewModel EditProduct { get; set; }
         public ProductsViewModel Products { get; set; }
+        public CategoriesViewModel Categories { get; set; }
         public AddProductViewModel AddProduct { get; set; }
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public MyUserASP UserASP { get; set; }

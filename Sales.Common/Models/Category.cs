@@ -28,7 +28,7 @@
                     return "noproduct";
                 }
 
-                return $"http://www.negrisl.es/sales.api{this.ImagePath.Substring(1)}";
+                return $"http://www.negrisl.es/sales.backend/{this.ImagePath.Substring(1)}";
             }
         }
     }

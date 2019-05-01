@@ -16,6 +16,7 @@
             <x:String x:Key="UrlPrefix">/Sales.api/api</x:String>
             <x:String x:Key="UrlProductsController">/Products</x:String>
             <x:String x:Key="UrlUsersController">/Users</x:String>
+            <x:String x:Key="UrlCategoriesController">/Categories</x:String>
 
             <!-- General colors -->
             <Color x:Key="MainColor">#428BCA</Color>
@@ -57,13 +58,13 @@
             <x:String x:Key="InstagramProfileInfoURL">https://api.instagram.com/v1/users/self/?access_token</x:String>
 
             <!-- Twitter -->
-            <x:String x:Key="TwitterConsumerKey">OL9VF9ivqoxvgMiNYrNcq4DOW</x:String>
-            <x:String x:Key="TwitterConsumerSecret">v039sZkHHLnZrqlUmkpRzlSZ9RVB9wA5w8XX12p5c8DDEoNLkG</x:String>
+            <x:String x:Key="TwitterConsumerKey">H6MJ3i5ycWj6DvgIzTZrM6g4w</x:String>
+            <x:String x:Key="TwitterConsumerSecret">GOK5P67ziOPnWg1aRMUmAoNM6h8ToxAoXJUOizG5bkGjq343Xy</x:String>
             <x:String x:Key="TwitterRequestTokenURL">https://api.twitter.com/oauth/request_token</x:String>
             <x:String x:Key="TwitterAuthorizeURL">https://api.twitter.com/oauth/authorize</x:String>
             <x:String x:Key="TwitterAccessTokenURL">https://api.twitter.com/oauth/access_token</x:String>
-            <x:String x:Key="Url">http://www.zulu-software.com</x:String>
             <x:String x:Key="TwitterProfileInfoURL">https://api.twitter.com/1.1/account/verify_credentials.json</x:String>
+            <x:String x:Key="TwitterCallBackURL">http://mobile.twitter.com/home</x:String>
         </ResourceDictionary>
 
     </Application.Resources>

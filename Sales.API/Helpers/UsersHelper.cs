@@ -109,6 +109,8 @@
             {
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
                 var oldUserASP = userManager.FindByEmail(userRequest.Email);
+                //userManager.Delete(oldUserASP);
+
                 if (oldUserASP != null)
                 {
                     return new Response

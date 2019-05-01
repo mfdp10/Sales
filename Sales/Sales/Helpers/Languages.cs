@@ -322,5 +322,25 @@
         {
             get { return Resource.RegisterConfirmation; }
         }
+
+        public static string Categories
+        {
+            get { return Resource.Categories; }
+        }
+
+        public static string Category
+        {
+            get { return Resource.Category; }
+        }
+
+        public static string CategoryError
+        {
+            get { return Resource.CategoryError; }
+        }
+
+        public static string CategoryPH
+        {
+            get { return Resource.CategoryPH; }
+        }
     }
 }
